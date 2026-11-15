@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: ecommerce-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER} # .env'den okunuyor
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5433:5432" # bilgisayar:container. Yerel PostgreSQL ile çakışmasın
+    volumes:
+      - pgdata:/var/lib/postgresql # veriler container silinse bile kalsın
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      retries: 10
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ecommerce-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy # postgres hazır olmadan başlamasın
+
+  mailpit:
+    image: axllent/mailpit
+    container_name: ecommerce-mailpit
+    restart: unless-stopped
+    ports:
+      - "8025:8025" # web arayüzü
+      - "1025:1025" # SMTP (uygulama mailleri buraya gönderecek)
+
+volumes:
+  pgdata:
