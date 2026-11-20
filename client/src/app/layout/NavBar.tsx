@@ -15,14 +15,14 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import { setDarkMode } from "./uiSlice";
 
 const midLinks = [
-  { title: "catalog", path: "/catalog" },
-  { title: "about", path: "/about" },
-  { title: "contact", path: "/contact" },
+  { title: "katalog", path: "/catalog" },
+  { title: "hakkımızda", path: "/about" },
+  { title: "iletişim", path: "/contact" },
 ];
 
 const rightLinks = [
-  { title: "login", path: "/login" },
-  { title: "register", path: "/register" },
+  { title: "giriş yap", path: "/login" },
+  { title: "kayıt ol", path: "/register" },
 ];
 
 const navStyles = {
@@ -60,7 +60,7 @@ export default function NavBar() {
         <List sx={{ display: "flex" }}>
           {midLinks.map(({ title, path }) => (
             <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
-              {title.toUpperCase()}
+              {title.toLocaleUpperCase("tr-TR")}
             </ListItem>
           ))}
         </List>
@@ -74,7 +74,7 @@ export default function NavBar() {
           <List sx={{ display: "flex" }}>
             {rightLinks.map(({ title, path }) => (
               <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
-                {title.toUpperCase()}
+                {title.toLocaleUpperCase("tr-TR")}
               </ListItem>
             ))}
           </List>

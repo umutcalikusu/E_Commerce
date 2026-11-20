@@ -20,13 +20,13 @@ export default function ProductDetails() {
     id ? +id : 0,
   );
 
-  if (!product || isLoading) return <div>Loading.....</div>;
+  if (!product || isLoading) return <div>Yükleniyor...</div>;
   const productDetails = [
-    { label: "Name", value: product.name },
-    { label: "Description", value: product.description },
-    { label: "Type", value: product.type },
-    { label: "Brand", value: product.brand },
-    { label: "Quantity in stock", value: product.quantityInStock },
+    { label: "İsim", value: product.name },
+    { label: "Açıklama", value: product.description },
+    { label: "Tür", value: product.type },
+    { label: "Marka", value: product.brand },
+    { label: "Stok Miktarı", value: product.quantityInStock },
   ];
   return (
     <Grid container spacing={6} sx={{ mx: "auto", maxWidth: "lg" }}>
@@ -62,7 +62,7 @@ export default function ProductDetails() {
             <TextField
               variant="outlined"
               type="number"
-              label="Quantity in basket"
+              label="Sepetteki adet"
               fullWidth
               defaultValue={1}
             />
@@ -75,7 +75,7 @@ export default function ProductDetails() {
               fullWidth
               sx={{ height: "55px" }}
             >
-              Add to Basket
+              Sepete Ekle
             </Button>
           </Grid>
         </Grid>

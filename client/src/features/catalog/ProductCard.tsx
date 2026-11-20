@@ -44,9 +44,9 @@ export default function ProductCard({ product }: Props) {
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>
-        <Button>Add to cart</Button>
+        <Button>Sepete Ekle</Button>
         <Button component={Link} to={`/catalog/${product.id}`}>
-          View
+          İncele
         </Button>
       </CardActions>
     </Card>
