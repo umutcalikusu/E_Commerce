@@ -6,7 +6,7 @@ import {
 import { startLoading, stopLoading } from "../layout/uiSlice";
 
 const customBaseQuery = fetchBaseQuery({
-  baseUrl: "https://localhost:5001/api",
+  baseUrl: import.meta.env.VITE_API_URL,
 });
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
@@ -14,7 +14,7 @@ const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
 export const baseQueryWithErrorHandling = async (
   args: string | FetchArgs,
   api: BaseQueryApi,
-  extraOptions: object
+  extraOptions: object,
 ) => {
   api.dispatch(startLoading());
   await sleep();

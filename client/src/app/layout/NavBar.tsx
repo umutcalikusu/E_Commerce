@@ -10,7 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { setDarkMode } from "./uiSlice";
 
@@ -49,7 +49,7 @@ export default function NavBar() {
           alignItems: "center",
         }}
       >
-        <Box display="flex" alignItems="center">
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography component={NavLink} sx={navStyles} to="/">
             RE-STORE
           </Typography>
@@ -65,7 +65,7 @@ export default function NavBar() {
           ))}
         </List>
 
-        <Box display="flex" alignItems="center">
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <IconButton size="large" sx={{ color: "inherit" }}>
             <Badge badgeContent="4" color="secondary">
               <ShoppingCart />

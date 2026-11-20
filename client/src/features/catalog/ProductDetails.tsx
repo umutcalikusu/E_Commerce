@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import {
   Button,
   Divider,
-  Grid2,
+  Grid,
   Table,
   TableBody,
   TableCell,
@@ -12,11 +12,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useFetchProductDetailsQuery } from "./catalogApi";
+import { formatCurrency } from "../../lib/util";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { data: product, isLoading } = useFetchProductDetailsQuery(
-    id ? +id : 0
+    id ? +id : 0,
   );
 
   if (!product || isLoading) return <div>Loading.....</div>;
@@ -28,19 +29,19 @@ export default function ProductDetails() {
     { label: "Quantity in stock", value: product.quantityInStock },
   ];
   return (
-    <Grid2 container spacing={6} maxWidth="lg" sx={{ mx: "auto" }}>
-      <Grid2 size={6}>
+    <Grid container spacing={6} sx={{ mx: "auto", maxWidth: "lg" }}>
+      <Grid size={6}>
         <img
           src={product?.pictureUrl}
           alt={product.name}
           style={{ width: "100%" }}
         />
-      </Grid2>
-      <Grid2 size={6}>
+      </Grid>
+      <Grid size={6}>
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="secondary">
-          ${(product.price / 100).toFixed(2)}
+          {formatCurrency(product.price)}
         </Typography>
         <TableContainer>
           <Table sx={{ "& td": { fontSize: "1rem" } }}>
@@ -56,8 +57,8 @@ export default function ProductDetails() {
             </TableBody>
           </Table>
         </TableContainer>
-        <Grid2 container spacing={2} marginTop={3}>
-          <Grid2 size={6}>
+        <Grid container spacing={2} sx={{ mt: 3 }}>
+          <Grid size={6}>
             <TextField
               variant="outlined"
               type="number"
@@ -65,8 +66,8 @@ export default function ProductDetails() {
               fullWidth
               defaultValue={1}
             />
-          </Grid2>
-          <Grid2 size={6}>
+          </Grid>
+          <Grid size={6}>
             <Button
               color="primary"
               size="large"
@@ -76,9 +77,9 @@ export default function ProductDetails() {
             >
               Add to Basket
             </Button>
-          </Grid2>
-        </Grid2>
-      </Grid2>
-    </Grid2>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }

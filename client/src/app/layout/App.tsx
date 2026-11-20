@@ -6,7 +6,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import NavBar from "./NavBar";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import { useAppSelector } from "../store/store";
 
 function App() {

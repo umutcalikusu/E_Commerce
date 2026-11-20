@@ -7,7 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "../../app/models/product";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
+import { formatCurrency } from "../../lib/util";
 
 type Props = {
   product: Product;
@@ -39,7 +40,7 @@ export default function ProductCard({ product }: Props) {
           {product.name}
         </Typography>
         <Typography variant="h6" sx={{ color: "secondary.main" }}>
-          ${(product.price / 100).toFixed(2)}
+          {formatCurrency(product.price)}
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>
